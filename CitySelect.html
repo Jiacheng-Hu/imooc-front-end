@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <script type="text/javascript">
+        function address() {
+            var province = document.getElementById("province");
+            var city = document.getElementById("city");
+            province.options.add(new Option("-  -  -","0"));
+            province.options.add(new Option("北京市","Beijing"));
+            province.options.add(new Option("天津市","Tianjin"));
+            province.options.add(new Option("河北省","Hebei"));
+            province.options.add(new Option("河南省","Henan"));
+            city.options.add(new Option("-  -  -","0"));
+        }
+        function selectRegion() {
+            var province = document.getElementById("province");
+            var city = document.getElementById("city");
+            var provinceValue = province.value;
+            if(provinceValue == "Beijing") {
+                city.options.length = 0;
+                city.options.add(new Option("朝阳区","ChaoyangDistrict"));
+                city.options.add(new Option("西城区","XichengDistrict"));
+            }
+            if(provinceValue == "Tianjin") {
+                city.options.length = 0;
+                city.options.add(new Option("西青区","XiqingDistrict"));
+                city.options.add(new Option("武清区","WuqingDistrict"));
+            }
+            if(provinceValue == "Hebei") {
+                city.options.length = 0;
+                city.options.add(new Option("石家庄市","Shijiazhuang"));
+                city.options.add(new Option("邯郸市","Handan"));
+            }
+            if(provinceValue == "Henan") {
+                city.options.length = 0;
+                city.options.add(new Option("郑州市","Zhengzhou"));
+                city.options.add(new Option("开封市","Kaifeng"));
+            }
+        }
+    </script>
+</head>
+<body onload="address()">
+    <label>省份：</label>
+    <select name="province" id="province" onchange="selectRegion()"></select>
+    <label>市/区：</label>
+    <select name="city" id="city"></select>
+</body>
+</html>
