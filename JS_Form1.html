@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script type="text/javascript">
+		function alertFunc() {
+			var indexArr = document.getElementsByName("gender");
+			var index;
+			if(indexArr[0].checked) {
+				index = indexArr[0].value;
+			} else {
+				index = indexArr[1].value;
+			}
+			alert(index);
+		}
+	</script>
+</head>
+<body>
+	<form>
+		<label>用户名</label>
+		<input type="text" name="username" id="username"><br>
+		<input type="radio" name="gender" value="1">男
+		<input type="radio" name="gender" value="0">女<br>
+		<input type="submit" name="submit" value="提交" onclick="alertFunc()">
+	</form>
+</body>
+</html>
