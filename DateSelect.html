@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SelectDate</title>
+    <script type="text/javascript">
+        function newFunc() {
+            var year = document.getElementById("year");
+            var month = document.getElementById("month");
+            var day = document.getElementById("day");
+            var currDate = new Date();
+            var currYear = currDate.getFullYear();
+            initSelect(year, 1970, currYear);
+            initSelect(month, 1, 12);
+            initSelect(day, 1, 31);
+            var n = year.length;
+            year.selectedIndex = Math.round(n/2);
+        }
+
+        function initSelect(obj, start, end) {
+            for(var i = start; i <= end; i++) {
+                obj.options.add(new Option(i,i));
+            }
+        }
+        
+        function selectYmd() {
+            var year = document.getElementById("year");
+            var month = document.getElementById("month");
+            var day = document.getElementById("day");
+            var yy = parseInt(year.value);
+            var mm = parseInt(month.value);
+            var endDay;
+            if(mm == 2) {
+                if((yy % 4 == 0 && yy % 100 != 0) || yy % 400 == 0) {
+                    endDay = 29;
+                } else {
+                    endDay = 28;
+                }
+            } else if(mm == 4 || mm == 6 || mm == 9 || mm == 11) {
+                endDay = 30;
+            } else {
+                endDay = 31;
+            }
+            day.options.length = 0;
+            initSelect(day, 1, endDay);
+        }
+    </script>
+</head>
+<body onload="newFunc()">
+    <select id="year" name="year" onchange="selectYmd()"></select>年
+    <select id="month" name="month" onchange="selectYmd()"></select>月
+    <select id="day" name="day"></select>日
+</body>
+</html>
